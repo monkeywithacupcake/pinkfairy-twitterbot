@@ -30,7 +30,9 @@ tweetbot.twitter_login(configure.cons_key,
                       )
 
 # Set some parameters for your bot
-targetstring = 'askPinkFairy' # my only hashtag
+targetstring = 'PinkFairyBook' # my only hashtag
+# won't catch my own 
+# MSG from Markovbot._autoreply: This tweet was my own, so I won't reply!
 keywords = ['fantasy', 'troll', 'fairy', 'princess', 'goblin']
 prefix = None
 suffix = '#FairyTalesRock'
