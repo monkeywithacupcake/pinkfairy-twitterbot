@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 from markovbot import MarkovBot
 import time
@@ -13,22 +15,22 @@ book = os.path.join(dirname, 'pink_fairy_book.txt')
 # Make your bot read the book!
 tweetbot.read(book)
 
-my_first_text = tweetbot.generate_text(25, seedword=['girl', 'troll'])
+my_first_text = tweetbot.generate_text(25, seedword=['goblin', 'butter'])
 print("tweetbot says:")
 print(my_first_text)
 
 # get keys
-import keys
+import configure
 
 # Log in to Twitter
-tweetbot.twitter_login(keys.cons_key, 
-                       keys.cons_secret, 
-                       keys.access_token, 
-                       keys.access_token_secret
+tweetbot.twitter_login(configure.cons_key, 
+                       configure.cons_secret, 
+                       configure.access_token, 
+                       configure.access_token_secret
                       )
 
 # Set some parameters for your bot
-targetstring = 'PinkFairyBook' # my only hashtag
+targetstring = 'askPinkFairy' # my only hashtag
 keywords = ['fantasy', 'troll', 'fairy', 'princess', 'goblin']
 prefix = None
 suffix = '#FairyTalesRock'
