@@ -1,5 +1,6 @@
 import os
 from markovbot import MarkovBot
+import time
 
 
 # Initialise a MarkovBot instance
@@ -42,6 +43,7 @@ tweetbot.twitter_autoreply_start(targetstring,
  
 # Use the following to stop auto-responding
 # (Don't do this directly after starting it, or your bot will do nothing!)
+time.sleep(86400)
 tweetbot.twitter_autoreply_stop()
 
 
@@ -50,4 +52,5 @@ tweetbot.twitter_tweeting_start(days=0, hours=19, minutes=30, keywords=None, pre
  
 # Use the following to stop periodically tweeting
 # (Don't do this directly after starting it, or your bot will do nothing!)
+time.sleep(86400)
 tweetbot.twitter_tweeting_stop()
