@@ -15,9 +15,10 @@ book = os.path.join(dirname, 'pink_fairy_book.txt')
 # Make your bot read the book!
 tweetbot.read(book)
 
-my_first_text = tweetbot.generate_text(25, seedword=['goblin', 'butter'])
-print("tweetbot says:")
-print(my_first_text)
+warmup = tweetbot.generate_text(20, seedword=['goblin', 'butter'])
+# generate_text sl defaults to 20 - if tweet length is > 140 chars, it is sl-1. 
+print("warm-up:")
+print(warmup)
 
 # get keys
 import configure
@@ -29,32 +30,31 @@ tweetbot.twitter_login(configure.cons_key,
                        configure.access_token_secret
                       )
 
-# Set some parameters for your bot
-targetstring = 'PinkFairyBook' # my only hashtag
-# won't catch my own 
-# MSG from Markovbot._autoreply: This tweet was my own, so I won't reply!
-keywords = ['fantasy', 'troll', 'fairy', 'princess', 'goblin']
+# Set some parameters
+targetstring = 'PinkFairyBook' # my only code word to autoreply
+keywords = ['fantasy', 'troll', 'fairy', 'princess', 'goblin'] 
+# one keyword is randomly chosen to be the seedword to generate_text function
 prefix = None
-suffix = '#FairyTalesRock'
+autoreplysuffix = '#FairyTalesRock' # this is different from the auto-tweet suffix
+autotweetsuffix = '#PinkFairyBook'
 maxconvdepth = None
 
 # Start auto-responding to tweets
 tweetbot.twitter_autoreply_start(targetstring, 
                                  keywords=keywords, 
                                  prefix=prefix, 
-                                 suffix=suffix, 
+                                 suffix=autoreplysuffix, 
                                  maxconvdepth=maxconvdepth)
  
-# Use the following to stop auto-responding
-# (Don't do this directly after starting it, or your bot will do nothing!)
-time.sleep(86400)
+#time.sleep(86400) # one day
+time.sleep(300)
 tweetbot.twitter_autoreply_stop()
 
 
 # Start periodically tweeting
-tweetbot.twitter_tweeting_start(days=0, hours=19, minutes=30, keywords=None, prefix=None, suffix='#PinkFairyBook')
+tweetbot.twitter_tweeting_start(days=0, hours=2, minutes=30, jitter=2,
+                                keywords=keywords, prefix=None, suffix=autotweetsuffix)
  
-# Use the following to stop periodically tweeting
-# (Don't do this directly after starting it, or your bot will do nothing!)
-time.sleep(86400)
+#time.sleep(86400)
+time.sleep(300)
 tweetbot.twitter_tweeting_stop()
